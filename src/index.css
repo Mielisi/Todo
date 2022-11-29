@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: white;
+  background-color: #252525;
+}
+
+ul{
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  list-style-type: none;
+}
+
+@media (max-width: 1000px){
+  body{
+    background-color: white;
+  }
+}
+
+
+@media (max-width: 530px){
+  body{
+    font-size: 20px;
+  }
+}

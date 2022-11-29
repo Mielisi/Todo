@@ -1,0 +1,112 @@
+.check {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #696969; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:  #696969; 
+}
+
+
+.li{
+  align-self: center;
+}
+.container {
+  height: 7rem;
+  width: 100%;
+  background-color: #ccc;
+  align-items: center;
+  margin: 0;
+  padding: 2rem;
+  font-size: 30px;
+  justify-content: left;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  word-break: break-word;
+
+}
+.top{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  width: 90%;
+}
+
+.scroll{
+  width: 90%;
+  height: 6.7rem;
+  overflow-x: hidden;
+  display: inline-block;
+  overflow-y: scroll;
+  scrollbar-color: rgb(105, 105, 105) rgba(255, 255, 255, 0);
+  
+}
+
+.container button{
+  margin-left: 15%;
+  height: 4rem;
+  width: 8rem;
+  border-radius: 20px;
+  border: 1px solid rgb(158, 158, 158);
+  background-color: aliceblue;
+  color: red;
+  cursor: pointer;
+}
+
+.container button:hover{
+  background-color: rgba(247, 133, 133, 0.756);
+  color: black;
+}
+
+.taskText{
+  width: 100%;
+}
+
+.completed{
+  text-decoration-line: line-through;
+  text-decoration-thickness: 4px;
+}
+.completed:hover{
+  text-decoration: none;
+}
+
+@media (max-width: 530px){
+  .container{
+    height: 15rem;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .top{
+    width: 100%;
+    margin-bottom: .5rem;
+  }
+
+  .container button{
+    width: 100%;
+    margin: 0;
+  }
+
+  .scroll{
+    height: 8rem;
+    width: 90%;
+  }
+}

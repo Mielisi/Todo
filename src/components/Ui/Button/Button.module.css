@@ -1,0 +1,10 @@
+.button {
+    border: 1px solid black;
+    margin: 1rem;
+    border-radius: 10px;
+    height: 2rem;
+    width: 7rem;
+    cursor: pointer;
+    background-color: rebeccapurple;
+    color: white;
+}

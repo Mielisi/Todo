@@ -1,0 +1,83 @@
+.addTask {
+  background-color: rgb(149, 149, 149);
+  width: 80%;
+  height: 15rem;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+  flex-direction: row;
+}
+
+.addTask form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addTask input {
+  height: 2rem;
+  margin-top: 0.8rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 20rem;
+  outline: 0;
+}
+
+.addTask input:focus {
+  box-shadow: 0 0px 9px rgba(106, 60, 190, 0.72);
+}
+
+.addTask button {
+  border: 1px solid black;
+  margin: 1rem;
+  border-radius: 10px;
+  height: 2rem;
+  width: 7rem;
+  cursor: pointer;
+  background-color: rebeccapurple;
+  color: white;
+}
+
+.pInvalid {
+  margin: 0;
+  color: red;
+}
+.pValid{
+    margin: 0;
+    color: transparent;
+}
+
+.invalid input {
+  background-color: rgba(244, 69, 69, 0.512);
+  border: 1px solid red;
+  outline: 0;
+  margin-bottom: 0.2rem;
+}
+
+.invalid input:focus {
+  box-shadow: 0 0px 9px rgba(255, 0, 0, 0.661);
+}
+
+.invalid button:disabled {
+  background-color: rgba(137, 43, 226, 0.478);
+  border: 1px solid rgba(0, 0, 0, 0.483);
+  cursor: no-drop;
+}
+@media (max-width: 530px){
+    .addTask{
+        width: 100%;
+        height: 20rem;
+        margin-bottom: .5rem;
+    }
+
+    .addTask input{
+        height: 3rem;
+        font-size: 25px;
+    }
+
+    .addTask button{
+        width: 20rem;
+        height: 4rem;
+    }
+}

@@ -1,0 +1,64 @@
+.modal {
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(255, 0, 0, 0.308);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contnet {
+  width: 40%;
+  height: 50vh;
+}
+
+.valid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.invalid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contnet label {
+  margin: 1rem;
+}
+.contnet input {
+  width: 20rem;
+  height: 2rem;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.invalid input {
+  background-color: rgba(244, 69, 69, 0.512);
+  border: 1px solid red;
+  outline: 0;
+  margin-bottom: 0.2rem;
+}
+
+.invalid input:focus {
+  box-shadow: 0 0px 9px rgba(255, 0, 0, 0.661);
+}
+
+
+.contnet button:disabled {
+  background-color: rgba(137, 43, 226, 0.478);
+  border: 1px solid rgba(0, 0, 0, 0.483);
+  cursor: no-drop;
+}
+.invalid p {
+  color: red;
+}
+
+
+@media (max-width: 1000px){
+  .contnet{
+    width: 70%;
+  }
+}
