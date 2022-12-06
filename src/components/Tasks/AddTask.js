@@ -36,18 +36,7 @@ const AddTask = (props) => {
       },
     });
 
-    setTimeout(() => props.reloadTask(), 450);
-
-    // try {
-    //   const response = await fetch(url.ur + ".json", {
-    //     method: "POST",
-    //     body: JSON.stringify(task),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
-    //   props.reloadTask();
-    // } catch (error) {}
+    setTimeout(() => props.reloadTask(), 750);
   };
 
   const submitHandler = (event) => {
