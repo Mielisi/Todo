@@ -17,16 +17,16 @@ const AddDB = (props) => {
 
   const submitHandler = () => {
     if(urlIsInvalid) return
-    console.log(url)
+    console.log("fron addDB",url)
     const completedUrl = url+"task"
     context.setUrl(completedUrl);
+    
     props.onClose()
   };
 
   const blurHandler = () =>{
     setIsTouched(true)
   }
-  const buttonIsValid = !urlIsInvalid || isTouched
   
   return (
     <div className={classes.modal}>
@@ -38,8 +38,9 @@ const AddDB = (props) => {
             <label>task.json</label>
           </div>
           <Button type="button" onClick={submitHandler} disabled={url.trim() === ""}>Inserisci il link</Button>
-          {urlIsInvalid && <p>Inserire un url valido</p>}
+          {urlIsInvalid ? <p>Inserire un url valido</p> : <p></p>}
         </div>
+
       </Card>
     </div>
   );

@@ -61,4 +61,25 @@
   .contnet{
     width: 70%;
   }
+
+}
+
+@media (max-width: 530px){
+  .contnet{
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    height: 80%;
+  }
+
+  .contnet input{
+    width: 18rem;
+    height: 4rem;
+    font-size: 30px;
+  }
+
+  .contnet button{
+    width: 18rem;
+    height: 4rem;
+  }
 }

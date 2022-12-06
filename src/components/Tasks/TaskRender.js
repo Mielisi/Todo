@@ -1,61 +1,58 @@
 import React, { useContext, useEffect, useState } from "react";
-import DBContex from "../../Contex/contex-db";
 import Button from "../Ui/Button/Button";
 import Card from "../Ui/Card/Card";
 import AddTask from "./AddTask";
+import useHttp from "../../Hooks/use-http";
 import TaskList from "./TaskList";
 
 import classes from "./TaskRender.module.css";
+import DBContex from "../../Contex/contex-db";
 
 const TaskRender = () => {
-  const dbUrl = useContext(DBContex);
-  const [task, setTask] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [task, setTask] = useState([]);
 
-  const fetchTasks = async () => {
-    setError(null);
-    setIsLoading(true);
-    try {
-      const response = await fetch(dbUrl.ur + ".json");
+  const DBctx = useContext(DBContex)
+  const fetchUrl = DBctx.ur + ".json"
 
-      if (!response.ok) {
-        throw new Error("Qualcosa non ha funzionato");
-      }
+  // using object destructioring to extract single variables from the useHttp
 
-      const data = await response.json();
-      const loadedTasks = [];
+  const { sendRequest: fetchTasks, isLoading, error } = useHttp();
 
-      for (const key in data) {
-        loadedTasks.push({
-          id: key,
-          text: data[key].taskName,
-          completed: data[key].completed,
-        });
-      }
+
+  //This is the function that was used to transform the data from object of objects to array of
+  // objects 
+  const transformTask = (data) => {
+    const loadedTasks = [];
+    for (const key of Object.keys(data)) {
+      loadedTasks.push({
+        id: key,
+        taskText: data[key].taskName,
+        completed: data[key].completed,
+      });
       setTask(loadedTasks);
-
-      setError(null);
-      setIsLoading(false);
-    } catch (error) {
-      setError(error.message);
     }
   };
 
   useEffect(() => {
-    fetchTasks();
-  },[]);
+
+    //calling fetchTasks with an empty object as first paramather (Because is a get request) and the 
+    //transfromTask function
+
+    fetchTasks({url: fetchUrl}, transformTask);
+  }, []);
 
   const filterChangeHandler = (event) => {
     setFilter(event.target.value);
-    fetchTasks();
+    fetchTasks({url: fetchUrl}, transformTask);
   };
+
+
 
   let contnent = <p>Non ho trovato nessun task</p>;
 
   if (task.length > 0) {
-    contnent = <TaskList tasks={task} reload={fetchTasks} filter={filter} />;
+    contnent = <TaskList tasks={task} reload={() => {fetchTasks({url: fetchUrl}, transformTask) }} filter={filter} />;
   }
 
   if (isLoading) {
@@ -68,7 +65,7 @@ const TaskRender = () => {
 
   return (
     <Card className={classes.scrollable}>
-      <AddTask reloadTask={fetchTasks} />
+      <AddTask reloadTask={() => {fetchTasks({url: fetchUrl}, transformTask)}} />
       <div className={classes.center}>
         <div className={classes.sel}>
           <p>Seleziona quali task vuoi visualizzare</p>
@@ -77,7 +74,7 @@ const TaskRender = () => {
             <option value="completed">Completate</option>
             <option value="notCompleted">Non completate</option>
           </select>
-          <Button onClick={fetchTasks}>Aggiorna i task</Button>
+          <Button onClick={() => {fetchTasks({url: fetchUrl}, transformTask)}}>Aggiorna i task</Button>
         </div>
 
         {contnent}

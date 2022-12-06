@@ -1,40 +1,38 @@
+import { waitFor } from "@testing-library/react";
 import React, { useContext } from "react";
 import DBContex from "../../Contex/contex-db";
+import useHttp from "../../Hooks/use-http";
 import Task from "./Task";
 
 const TaskList = (props) => {
   const dbUrl = useContext(DBContex);
-  const updateDt = async (id, check) => {
-    const url = dbUrl.ur +"/"+ id + ".json";
-    console.log(url)
-    try {
-      const response = await fetch(url, {
-        method: "PATCH",
-        body: JSON.stringify({ completed: !check }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
 
-      if (!response.ok) throw new Error("e' successo un errore imprevisto");
-    } catch (error) {
-      console.log(error.message);
-    }
+  const { sendRequest: updateTask } = useHttp();
+  const { sendRequest: removeTask, isLoading } = useHttp();
+
+  const updateDt = async (id, check) => {
+    const url = dbUrl.ur + "/" + id + ".json";
+
+    updateTask({
+      url,
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:{ completed: !check },
+    });
   };
 
   const removeItemHandler = async (id) => {
-    const url = dbUrl.ur +"/"+ id + ".json";
-    try {
-      const response = await fetch(url, {
-        method: "DELETE",
-      });
+    const url = dbUrl.ur + "/" + id + ".json";
 
-      if (!response.ok) throw new Error("e' successo un errore imprevisto");
+    removeTask({
+      url,
+      method:"DELETE"
+    })
 
-      props.reload();
-    } catch (error) {
-      console.log(error.message);
-    }
+    setTimeout(()=>props.reload(), 450) 
+
   };
 
   let contnet = <li></li>;
@@ -44,9 +42,8 @@ const TaskList = (props) => {
       <li key={task.id}>
         <Task
           id={task.id}
-          taskText={task.text}
+          taskText={task.taskText}
           completed={task.completed}
-          task={props.task}
           updateData={updateDt}
           removeTask={removeItemHandler}
         />
@@ -59,9 +56,8 @@ const TaskList = (props) => {
           <li key={task.id}>
             <Task
               id={task.id}
-              taskText={task.text}
+              taskText={task.taskText}
               completed={task.completed}
-              task={props.task}
               updateData={updateDt}
               removeTask={removeItemHandler}
             />
@@ -75,9 +71,8 @@ const TaskList = (props) => {
           <li key={task.id}>
             <Task
               id={task.id}
-              taskText={task.text}
+              taskText={task.taskText}
               completed={task.completed}
-              task={props.task}
               updateData={updateDt}
               removeTask={removeItemHandler}
             />

@@ -4,23 +4,22 @@ import Card from "../Ui/Card/Card";
 import classes from "./AddTask.module.css";
 import Button from "../Ui/Button/Button";
 import DBContex from "../../Contex/contex-db";
+import useHttp from "../../Hooks/use-http";
 
 const AddTask = (props) => {
-
-  const url = useContext(DBContex)
+  const url = useContext(DBContex);
   const [task, setTask] = useState({
     taskName: "",
-    completed: false
+    completed: false,
   });
   const [taskIsTouched, setTaskIsTouched] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(false);
-
+  const { sendRequest: sendTask, isLoading } = useHttp();
 
   let formIsValid = taskIsTouched && task.taskName.trim() === "";
 
   const setTaskHandler = (event) => {
-    setTask({taskName: event.target.value , completed: task.completed});
+    setTask({ taskName: event.target.value, completed: task.completed });
   };
 
   const setTouchedHandler = () => {
@@ -28,42 +27,42 @@ const AddTask = (props) => {
   };
 
   const uploadTaskHandler = async () => {
-    try{
-      const response = await fetch(
-        url.ur + ".json",
-        {
-          method: "POST",
-          body: JSON.stringify(task),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      props.reloadTask()
+    sendTask({
+      url: url.ur + ".json",
+      method: "POST",
+      body: task,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    }catch(error){
+    setTimeout(() => props.reloadTask(), 450);
 
-    }
-      
+    // try {
+    //   const response = await fetch(url.ur + ".json", {
+    //     method: "POST",
+    //     body: JSON.stringify(task),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   props.reloadTask();
+    // } catch (error) {}
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setIsLoading(true);
 
     if (task.taskName.trim() === "") {
-      setIsLoading(false);
       return;
     }
     setTaskIsTouched(false);
     setTask({
       taskName: "",
-      completed: task.completed
+      completed: task.completed,
     });
 
-    uploadTaskHandler()
-    
-    setIsLoading(false);
+    uploadTaskHandler();
   };
 
   return (
