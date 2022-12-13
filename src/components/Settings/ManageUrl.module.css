@@ -97,10 +97,3 @@
 .form input:focus {
   box-shadow: 0 0px 9px rgba(106, 60, 190, 0.72);
 }
-
-
-@media (max-width: 530px){
-  body{
-    font-size: 20px;
-  }
-}
