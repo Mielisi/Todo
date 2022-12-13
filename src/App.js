@@ -10,11 +10,11 @@ import ManageUrl from "./components/Settings/ManageUrl";
 
 function App() {
   const [URL, setURL] = useState("");
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
 
   useEffect(() => {
-    if (localStorage.getItem("url") !== "" ) {
+    if (localStorage.getItem("url") !== null || "" ) {
       setURL(localStorage.getItem("url"));
       setShowModal(false);
     }else{
