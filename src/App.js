@@ -14,11 +14,11 @@ function App() {
 
 
   useEffect(() => {
-    if (localStorage.getItem("url") !== null || "" ) {
+    if (localStorage.getItem("url") === null || localStorage.getItem("url") !== "" ) {
       setURL(localStorage.getItem("url"));
       setShowModal(false);
     }else{
-      setTimeout(()=>{setShowModal(true)}, 500) 
+      setTimeout(()=>{setShowModal(true)}, 1000) 
     }
   }, [setURL, URL]);
 
