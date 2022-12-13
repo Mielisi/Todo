@@ -1,4 +1,3 @@
-import { waitFor } from "@testing-library/react";
 import React, { useContext } from "react";
 import DBContex from "../../Contex/contex-db";
 import useHttp from "../../Hooks/use-http";
@@ -8,7 +7,7 @@ const TaskList = (props) => {
   const dbUrl = useContext(DBContex);
 
   const { sendRequest: updateTask } = useHttp();
-  const { sendRequest: removeTask, isLoading } = useHttp();
+  const { sendRequest: removeTask } = useHttp();
 
   const updateDt = async (id, check) => {
     const url = dbUrl.ur + "/" + id + ".json";

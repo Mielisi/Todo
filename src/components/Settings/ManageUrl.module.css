@@ -1,0 +1,106 @@
+.cardUrl {
+  display: inline;
+  width: 60%;
+  height: auto;
+
+}
+.layoutDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.deleting{
+  color: red;
+}
+
+.supportDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 50%;
+  flex-direction: column;
+}
+.supportDiv p {
+  color: red;
+}
+.supportEditDiv{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.supportDiv button {
+  height: 3rem;
+  width: 8rem;
+  background-color: #ccc;
+  color: red;
+}
+
+.supportDiv button:hover {
+  background-color: rgba(247, 133, 133, 0.756);
+  color: black;
+}
+
+.button {
+  height: 3rem;
+  width: 8rem;
+  background-color: #ccc;
+  color: red;
+}
+
+.button:hover {
+  background-color: rgba(247, 133, 133, 0.756);
+  color: black;
+}
+.formDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.form label {
+  margin-bottom: 0.6rem;
+}
+
+.error {
+  color: red;
+}
+
+.form input {
+  width: 20rem;
+  height: 2rem;
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.form input:focus {
+  box-shadow: 0 0px 9px rgba(106, 60, 190, 0.72);
+}
+
+
+@media (max-width: 530px){
+  body{
+    font-size: 20px;
+  }
+}

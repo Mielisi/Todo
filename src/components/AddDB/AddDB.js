@@ -35,7 +35,6 @@ const AddDB = (props) => {
           <label htmlFor="url">Inserire l'url del DB (Preferibbilmente FireBase)</label>
           <div className={classes.input}>
             <input type="text" id="url" onChange={urlInpurtHandler} onBlur={blurHandler}/>
-            <label>task.json</label>
           </div>
           <Button type="button" onClick={submitHandler} disabled={url.trim() === ""}>Inserisci il link</Button>
           {urlIsInvalid ? <p>Inserire un url valido</p> : <p></p>}

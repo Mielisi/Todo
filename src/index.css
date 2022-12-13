@@ -15,6 +15,9 @@ ul{
   width: 100%;
   list-style-type: none;
 }
+input{
+  outline: none;
+}
 
 @media (max-width: 1000px){
   body{

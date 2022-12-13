@@ -6,9 +6,11 @@ import classes from "./Task.module.css";
 const Task = (props) => {
   const [checked, setChecked] = useState();
 
+  const completed = props.completed
+
   useEffect(() => {
-    setChecked(props.completed);
-  }, []);
+    setChecked(completed);
+  }, [completed]);
 
   let pClasses = `${classes.taskText}`;
 
