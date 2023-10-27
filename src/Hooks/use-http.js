@@ -23,7 +23,7 @@ const useHttp = () => {
 
   The second paramether is a function tha is used to transform the data
   */
-  const sendRequest = useCallback(async (requestConfig, applayData) => {
+  const sendRequest = useCallback(async (requestConfig, applyData) => {
     setIsLoading(true);
     setError(null);
 
@@ -40,7 +40,7 @@ const useHttp = () => {
       }
       const data = await response.json();
 
-      applayData(data);
+      applyData(data);
     } catch (err) {
       setError(err.message || "Qualcosa e' andato storto!");
     }
