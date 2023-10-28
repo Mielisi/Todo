@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.contnet {
+.content {
   width: 40%;
   height: 50vh;
 }
@@ -25,10 +25,10 @@
   flex-direction: column;
   align-items: center;
 }
-.contnet label {
+.content label {
   margin: 1rem;
 }
-.contnet input {
+.content input {
   width: 20rem;
   height: 2rem;
   border-radius: 5px;
@@ -46,7 +46,7 @@
   box-shadow: 0 0px 9px rgba(255, 0, 0, 0.661);
 }
 
-.contnet button:disabled {
+.content button:disabled {
   background-color: rgba(137, 43, 226, 0.478);
   border: 1px solid rgba(0, 0, 0, 0.483);
   cursor: no-drop;
@@ -56,7 +56,7 @@
 }
 
 @media (max-width: 1000px) {
-  .contnet {
+  .content {
     width: 70%;
   }
   .modal {
@@ -65,20 +65,20 @@
 }
 
 @media (max-width: 530px) {
-  .contnet {
+  .content {
     width: 100%;
     padding: 2rem;
     text-align: center;
     height: 80%;
   }
 
-  .contnet input {
+  .content input {
     width: 18rem;
     height: 4rem;
     font-size: 30px;
   }
 
-  .contnet button {
+  .content button {
     width: 18rem;
     height: 4rem;
   }

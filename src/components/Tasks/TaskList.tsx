@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import DBContex from "../../Contex/contex-db";
+import DBContex from "../../Context/context-db";
 import useHttp from "../../Hooks/use-http";
 import Task from "./Task";
 

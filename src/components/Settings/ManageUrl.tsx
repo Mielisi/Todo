@@ -1,23 +1,23 @@
-import React, { useContext, useState } from "react";
-import DBContex from "../../Contex/contex-db";
-import Button from "../Ui/Button/Button";
-import Card from "../Ui/Card/Card";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { DBContext } from "../../Context/context-db";
+import { Button } from "../Ui/Button/Button";
+import {Card} from "../Ui/Card/Card";
 import classes from "./ManageUrl.module.css";
 
-const ManageUrl = () => {
-  const dbContex = useContext(DBContex);
+export const ManageUrl = () => {
+  const { ur, setUrl } = useContext(DBContext);
   const [urlChange, setUrlChange] = useState("");
   const [errorUrl, setErrorUrl] = useState(<p></p>);
 
   const [showForm, setShowForm] = useState(false);
 
-  const urlChangeHandler = (event) => {
+  const urlChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setUrlChange(event.target.value);
   };
 
   const deleteUrlHandler = () => {
     localStorage.setItem("url", "");
-    dbContex.setUrl("");
+    setUrl("");
     setShowForm(false);
   };
 
@@ -25,26 +25,27 @@ const ManageUrl = () => {
     setShowForm((state) => !state);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (urlChange.trim() !== "") {
       setErrorUrl(<p></p>);
-      dbContex.setUrl(urlChange + "task");
+      setUrl(urlChange + "task");
     } else {
-      setErrorUrl(<p className={classes.error}>Inserirsic l'url</p>);
+      setErrorUrl(<p className={classes.error}>Inserisci l'url</p>);
     }
   };
 
-  let centerContnent = <p></p>;
+  let centerContent = <p></p>;
 
-  if (dbContex.ur === "") {
-    centerContnent = <p className={classes.deleting}>Sto eliminando l'URL attendere</p>;
-    
+  if (ur === "") {
+    centerContent = (
+      <p className={classes.deleting}>Sto eliminando l'URL attendere</p>
+    );
   } else if (showForm) {
-    centerContnent = (
+    centerContent = (
       <form className={classes.form} onSubmit={submitHandler}>
-        <p>L'url attuale e': {dbContex.ur}</p>
+        <p>L'url attuale e': {ur}</p>
         <label htmlFor="newUrl"> inserisci il nuovo url</label>
         <input type="text" id="newUrl" onChange={urlChangeHandler} />
         <Button className={classes.changeUrl} type="submit">
@@ -53,10 +54,10 @@ const ManageUrl = () => {
         {errorUrl}
       </form>
     );
-  }else{
-    centerContnent = <p></p>
+  } else {
+    centerContent = <p></p>;
   }
-  
+
   return (
     <Card className={classes.cardUrl}>
       <div className={classes.layoutDiv}>
@@ -70,12 +71,8 @@ const ManageUrl = () => {
             </Button>
           </div>
         </div>
-        <div className={classes.bottom}>
-          {centerContnent}
-        </div>
+        <div className={classes.bottom}>{centerContent}</div>
       </div>
     </Card>
   );
 };
-
-export default ManageUrl;

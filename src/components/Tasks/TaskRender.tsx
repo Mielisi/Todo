@@ -1,18 +1,18 @@
-import React, { useContext, useState } from "react";
-import Button from "../Ui/Button/Button";
+import { useContext, useState } from "react";
+import {Button} from "../Ui/Button/Button";
 import Card from "../Ui/Card/Card";
 import AddTask from "./AddTask";
 import useHttp from "../../Hooks/use-http";
 import TaskList from "./TaskList";
 
 import classes from "./TaskRender.module.css";
-import DBContex from "../../Contex/contex-db";
+import {DBContext} from "../../Context/context-db";
 
 const TaskRender = (props) => {
   const [filter, setFilter] = useState("all");
   const [task, setTask] = useState([]);
 
-  const DBctx = useContext(DBContex);
+  const DBctx = useContext(DBContext);
   const fetchUrl = DBctx.ur + ".json";
 
   // using object destructioring to extract single variables from the useHttp

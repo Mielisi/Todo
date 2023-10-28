@@ -3,7 +3,7 @@ import Card from "../Ui/Card/Card";
 
 import classes from "./AddTask.module.css";
 import Button from "../Ui/Button/Button";
-import DBContex from "../../Contex/contex-db";
+import DBContex from "../../Context/context-db";
 import useHttp from "../../Hooks/use-http";
 
 const AddTask = (props) => {
